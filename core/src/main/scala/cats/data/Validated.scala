@@ -192,6 +192,17 @@ private[data] sealed abstract class ValidatedInstances extends ValidatedInstance
       override def bimap[A, B, C, D](fab: Validated[A, B])(f: A => C, g: B => D): Validated[C, D] = fab.bimap(f, g)
     }
 
+  implicit def validatedMonoid[E,A](implicit E: Semigroup[E], A: Monoid[A]): Monoid[Validated[E,A]] =
+    new Monoid[Validated[E,A]] {
+      def empty: Validated[E,A] = Valid(A.empty)
+      def combine(x: Validated[E,A],y: Validated[E,A]): Validated[E,A] = (x,y) match {
+        case (Invalid(ix),Invalid(iy)) => Invalid(E.combine(ix,iy))
+        case (Valid(vx),Valid(vy)) => Valid(A.combine(vx,vy))
+        case (Invalid(_),_) => x
+        case (_,Invalid(_)) => y
+      }
+    }
+
   implicit def validatedInstances[E](implicit E: Semigroup[E]): Traverse[Validated[E, ?]] with Applicative[Validated[E, ?]] =
     new Traverse[Validated[E, ?]] with Applicative[Validated[E,?]] {
       def traverse[F[_]: Applicative, A, B](fa: Validated[E,A])(f: A => F[B]): F[Validated[E,B]] =
