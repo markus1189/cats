@@ -1,7 +1,7 @@
 # Type classes
 
-The type class pattern is a ubiquitous pattern in Scala, its function
-is to provide a behavior for some type. You think of it as an
+The type class pattern is an ubiquitous pattern in Scala, its function
+is to provide a behavior for some type. For now, you can think of it as an
 "interface" in the Java sense. Here's an example.
 
 ```tut:silent
@@ -14,8 +14,8 @@ trait Show[A] {
 ```
 This class says that a value of type `Show[A]` has a way to turn `A`s
 into `String`s. Now we can write a function which is polymorphic on
-some `A`, as long as we have some value of `Show[A]`, so that our function
-can have a way of producing a `String`:
+some `A`, as long as we have some value of `Show[A]` available,
+allowing our function to produce a `String`:
 
 ```tut:silent
 def log[A](a: A)(implicit s: Show[A]) = println(s.show(a))
@@ -83,5 +83,6 @@ is the same as
 def log[A](a: A)(implicit s: Show[A]) = println(s.show(a))
 ```
 
-That is that declaring the type parameter as `A : Show`, it will add
-an implicit parameter to the method signature (with a name we do not know).
+By declaring the type parameter as `A : Show`, the Scala compiler will add
+an implicit parameter to the method signature (using an automatically
+generated name).
