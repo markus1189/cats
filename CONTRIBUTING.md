@@ -106,11 +106,18 @@ TODO
 
 *Should this just link to a separate doc? This might get large.*
 
+#### Typeclass instance usage
 Write about implicit params as discussed in https://github.com/typelevel/cats/issues/27
 
+#### Typeclass methods on data structures
 Write about type class methods on data structures as described in https://github.com/typelevel/cats/issues/25
 
-Write about https://github.com/typelevel/cats/pull/36#issuecomment-72892359
+#### ... extends Product with Serializable
+Write about
+https://github.com/typelevel/cats/pull/36#issuecomment-72892359
+
+#### Usage of symbolic operators
+https://github.com/typelevel/cats/issues/993
 
 ### Write tests
 
