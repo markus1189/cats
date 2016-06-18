@@ -8,6 +8,7 @@ trait AllSyntax
     with BifunctorSyntax
     with BifoldableSyntax
     with BitraverseSyntax
+    with BoolSyntax
     with CartesianSyntax
     with CoflatMapSyntax
     with ComonadSyntax

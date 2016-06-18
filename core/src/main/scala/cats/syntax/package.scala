@@ -9,6 +9,7 @@ package object syntax {
   object bifunctor extends BifunctorSyntax
   object bifoldable extends BifoldableSyntax
   object bitraverse extends BitraverseSyntax
+  object bool extends BoolSyntax
   object cartesian extends CartesianSyntax
   object coflatMap extends CoflatMapSyntax
   object coproduct extends CoproductSyntax
